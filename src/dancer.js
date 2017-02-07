@@ -61,12 +61,11 @@ makeDancer.prototype.setPosition = function(top, left) {
   this.$node.css(styleSettings);
 };
 
-var lineUp = function() {
+makeDancer.prototype.lineUp = function(array, index) {
   // get width of page and then divide by number of dancers to line them up evenly across the page
-  var vert = Math.floor($("body").height()/1.10);
-  var horiz = Math.floor($("body").width() / dancers.length); 
-  for (var index = 0; index < dancers.length; index++) {
-    // line up each dancer
-    dancers[index].setPosition(vert, (horiz * index+1))
-  }
+  var row = Math.floor($("body").height()/1.10);
+  var column = Math.floor($("body").width() / array.length) * index;
+  console.log('row',row);
+  console.log('column', column);
+  this.setPosition(row, column);
 };

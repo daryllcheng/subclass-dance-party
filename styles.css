@@ -4,7 +4,7 @@ body, html{
 body{
   margin: 0px;
   /* background-color:#444; */
-  background-image: url("src/background.tif");
+  background-image: url("src/background.jpg");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   font-size: 18px;

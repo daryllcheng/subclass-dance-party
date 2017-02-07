@@ -1,7 +1,6 @@
 $(document).ready(function() {
   window.dancers = [];
 
-
   $('.addBlinkingDancerButton').on('click', function(event) {
     /* This function sets up the click handlers for the create-dancer
      * buttons on dancefloor.html. You should only need to make one small change to it.
@@ -31,10 +30,26 @@ $(document).ready(function() {
     );
 
     dancer.setPosition(randomHeight, randomWidth);
-    dancers.push(dancer.$node);
+    dancers.push(dancer);
 
     $('body').append(dancer.$node);
+
+    $('#lineUpButton').on('click', function(event) {
+      var blinkingNodes = [];
+      for (var index = 0; index < dancers.length; index++) {
+        if (dancers[index] instanceof makeBlinkyDancer) {
+          blinkingNodes.push(dancers[index]);
+        }
+      }
+      console.log(blinkingNodes); 
+      for (var blinker = 0; blinker < blinkingNodes.length; blinker++) {
+        blinkingNodes[blinker].lineUp(blinkingNodes, blinker);
+      }
+    });
+
   });
+
+
 
 
   $('.addBouncingDancerButton').on('click', function(event) {
@@ -55,7 +70,7 @@ $(document).ready(function() {
     );
 
     dancer.setPosition(randomHeight, randomWidth);
-    dancers.push(dancer.$node);
+    dancers.push(dancer);
 
     $('body').append(dancer.$node);
     
@@ -65,6 +80,19 @@ $(document).ready(function() {
 
     dancer.$node.on('mouseleave', function(event) {
       dancer.shake = false;
+    });
+
+    $('#lineUpButton').on('click', function(event) {
+      var bouncingNodes = [];
+      for (var index = 0; index < dancers.length; index++) {
+        if (dancers[index] instanceof makeBouncingDancer) {
+          bouncingNodes.push(dancers[index]);
+        }
+      }
+      console.log(bouncingNodes); 
+      for (var bouncer = 0; bouncer < bouncingNodes.length; bouncer++) {
+        bouncingNodes[bouncer].lineUp(bouncingNodes, bouncer);
+      }
     });
 
   });
@@ -87,20 +115,14 @@ $(document).ready(function() {
     );
 
     dancer.setPosition(randomHeight, randomWidth);
-    dancers.push(dancer.$node);
+    dancers.push(dancer);
 
     $('body').append(dancer.$node);
   });
 
-
-
-$('#lineUp').on('click', function(event) {
-    var dancerMakerFunctionName = $(this).data('dancer-maker-function-name');
-
-    // get the maker function for the kind of dancer we're supposed to make
-    var dancerMakerFunction = window[dancerMakerFunctionName];
-
-});
+  // $('#lineUpButton').on('click', function(event) {
+  //   lineUp();
+  // });
 
 });
 

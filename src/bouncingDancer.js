@@ -17,3 +17,12 @@ makeBouncingDancer.prototype.step = function() {
   }
   this.oldStep.call(this);
 };
+
+makeBouncingDancer.prototype.lineUp = function(array, index) {
+  // get width of page and then divide by number of dancers to line them up evenly across the page
+  var row = Math.floor($("body").height()/1.50);
+  var column = Math.floor($("body").width() / array.length) * index;
+  console.log('row',row);
+  console.log('column', column);
+  this.setPosition(row, column);
+};

@@ -9,6 +9,6 @@ makeBouncingDancer.prototype.constructor = makeBouncingDancer;
 
 makeBouncingDancer.prototype.step = function() {
   this.oldStep = makeDancer.prototype.step;
-  this.$node.effect("bounce", {distance: 10, times: 5}, "slow");
+  this.$node.effect("bounce", {distance: Math.floor(20 * Math.random()), times: 5}, "slow");
   this.oldStep.call(this);
 };

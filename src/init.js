@@ -30,7 +30,7 @@ $(document).ready(function() {
     );
 
     dancer.setPosition(randomHeight, randomWidth);
-    dancers.push(dancer.$node);
+    dancers.push(dancer);
 
     $('body').append(dancer.$node);
   });
@@ -66,17 +66,13 @@ $(document).ready(function() {
     );
 
     dancer.setPosition(randomHeight, randomWidth);
-    dancers.push(dancer.$node);
+    dancers.push(dancer);
 
     $('body').append(dancer.$node);
   });
 
-$('#lineUp').on('click', function(event) {
-    var dancerMakerFunctionName = $(this).data('dancer-maker-function-name');
-
-    // get the maker function for the kind of dancer we're supposed to make
-    var dancerMakerFunction = window[dancerMakerFunctionName];
-
+$('#lineUpButton').on('click', function(event) {
+    lineUp();
 });
 
 });

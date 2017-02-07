@@ -63,7 +63,7 @@ makeDancer.prototype.setPosition = function(top, left) {
 
 var lineUp = function() {
   // get width of page and then divide by number of dancers to line them up evenly across the page
-  var vert = Math.floor($("body").height()/10);
+  var vert = Math.floor($("body").height()/1.10);
   var horiz = Math.floor($("body").width() / dancers.length); 
   for (var index = 0; index < dancers.length; index++) {
     // line up each dancer

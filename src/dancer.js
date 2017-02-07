@@ -1,4 +1,4 @@
-// // Creates and returns a new dancer object that can step
+// // // // Creates and returns a new dancer object that can step
 // var makeDancer = function(top, left, timeBetweenSteps) {
 
 //   var dancer = {};
@@ -7,6 +7,7 @@
 //   dancer.$node = $('<span class="dancer"></span>');
 
 //   dancer.step = function() {
+//     // console.log('dancer');
 //     // the basic dancer doesn't do anything interesting at all on each step,
 //     // it just schedules the next step
 //     setTimeout(dancer.step, timeBetweenSteps);
@@ -32,13 +33,21 @@
 // }; 
 
 var makeDancer = function(top, left, timeBetweenSteps) {
+  this.top = top;
+  this.left = left;
+  this.timeBetweenSteps = timeBetweenSteps;
   this.$node = $('<span class="dancer"></span>');
+  this.step();
 }
 
 makeDancer.prototype.step = function() {
     // the basic dancer doesn't do anything interesting at all on each step,
     // it just schedules the next step
-    setTimeout(this.step, this.timeBetweenSteps);
+
+    // invokes this.step(), which is set to the subclass's step() method,
+    // after `timeBetweenSteps` amount of milliseconds. `this` is bound
+    // to `makeBlinkyDancer.prototype`.
+    setTimeout(this.step.bind(this), this.timeBetweenSteps);
 };
 
 makeDancer.prototype.setPosition = function(top, left) {

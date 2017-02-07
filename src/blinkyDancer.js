@@ -7,20 +7,24 @@
 //   var oldStep = blinkyDancer.step;
 
 //   blinkyDancer.step = function() {
+//     // debugger;
+//     // console.log('blinky');
 //     // call the old version of step at the beginning of any call to this new version of step
 //     oldStep();
 //     // toggle() is a jQuery method to show/hide the <span> tag.
 //     // See http://api.jquery.com/category/effects/ for this and
 //     // other effects you can use on a jQuery-wrapped html tag.
 //     blinkyDancer.$node.toggle();
+//     this.step();
 //   };
 
 //   return blinkyDancer;
 // };
 
+///////////
+
 var makeBlinkyDancer = function(top, left, timeBetweenSteps) {
   makeDancer.call(this, top, left, timeBetweenSteps);
-  this.oldStep = this.step;
 };
 
 makeBlinkyDancer.prototype = Object.create(makeDancer.prototype);
@@ -28,6 +32,9 @@ makeBlinkyDancer.prototype = Object.create(makeDancer.prototype);
 makeBlinkyDancer.prototype.constructor = makeBlinkyDancer;
 
 makeBlinkyDancer.prototype.step = function() {
-  this.oldStep();
+  this.oldStep = makeDancer.prototype.step;
+  // toggles the span dancer (show/hides circle)
   this.$node.toggle();
+  // calls superclass step() method, and bind `this` (refers to makeBlinkyDancer.prototype) to it
+  this.oldStep.call(this);
 };

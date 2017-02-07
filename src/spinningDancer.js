@@ -9,6 +9,5 @@ makeSpinningDancer.prototype.constructor = makeSpinningDancer;
 
 makeSpinningDancer.prototype.step = function() {
   this.oldStep = makeDancer.prototype.step;
-  this.$node.effect("shake");
   this.oldStep.call(this);
 };

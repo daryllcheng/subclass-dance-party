@@ -42,6 +42,7 @@ body, a:link, a:visited, a:active{
 .pokemon2{
   height: 200px;
   width: 200px;
+<<<<<<< HEAD
   top: 50%;
   left: 50%;
   margin:-60px 0 0 -60px;
@@ -54,3 +55,6 @@ body, a:link, a:visited, a:active{
 @-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
 @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
 
+=======
+}
+>>>>>>> 1c730fcdbb4648273c1505e77806d7dc9a479056

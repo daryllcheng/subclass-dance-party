@@ -36,7 +36,7 @@ var makeDancer = function(top, left, timeBetweenSteps) {
   this.top = top;
   this.left = left;
   this.timeBetweenSteps = timeBetweenSteps;
-  this.$node = $('<span class="dancer"></span>');
+  this.$node = $('<span class="blinkingdancer"></span>');
   this.step();
 }
 
@@ -59,4 +59,14 @@ makeDancer.prototype.setPosition = function(top, left) {
     left: left
   };
   this.$node.css(styleSettings);
+};
+
+var lineUp = function() {
+  // get width of page and then divide by number of dancers to line them up evenly across the page
+  var vert = Math.floor($("body").height()/10);
+  var horiz = Math.floor($("body").width() / dancers.length); 
+  for (var index = 0; index < dancers.length; index++) {
+    // line up each dancer
+    dancers[index].setPosition(vert, (horiz * index+1))
+  }
 };

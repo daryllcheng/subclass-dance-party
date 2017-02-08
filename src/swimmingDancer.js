@@ -19,7 +19,6 @@ makeSwimmingDancer.prototype.step = function() {
   if (this.near) {
     // add class
     this.$node.addClass('animated infinite rubberBand');
-    // console.log('touched');
   } else {
     // remove class
     this.$node.removeClass('animated rubberBand');

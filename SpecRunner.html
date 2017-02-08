@@ -7,6 +7,8 @@
   <script src="lib/mocha/mocha.js"></script>
   <script src="lib/chai/chai.js"></script>
   <script src="lib/sinon/sinon.js"></script>
+  <script src="lib/jquery-ui-1.12.1/jquery-ui.js"></script>
+  <script src="lib/jquery-ui-1.12.1/jquery-ui.min.js"></script>
   <script>
     mocha.setup('bdd');
     window.expect = chai.expect;
@@ -14,10 +16,14 @@
       window.mochaPhantomJS ? mochaPhantomJS.run() : mocha.run();
     });
   </script>
-  <script src="spec/blinkyDancerSpec.js"></script>
+  <script src="spec/dancerSpec.js"></script>
+  <script src="src/init.js"></script>
   <script src="src/dancer.js"></script>
   <script src="src/blinkyDancer.js"></script>
+  <script src="src/bouncingDancer.js"></script>
   <script src="src/spinningDancer.js"></script>
+  <script src="src/swimmingDancer.js"></script>
+  <script src="src/randomDancers.js"></script>
 </head>
 <body>
 <div id="mocha"></div>

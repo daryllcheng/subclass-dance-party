@@ -41,9 +41,16 @@ $(document).ready(function() {
           blinkingNodes.push(dancers[index]);
         }
       }
-      console.log(blinkingNodes); 
       for (var blinker = 0; blinker < blinkingNodes.length; blinker++) {
         blinkingNodes[blinker].lineUp(blinkingNodes, blinker);
+      }
+    });
+
+    dancer.$node.draggable({
+      stop: function() {
+        var height = dancer.top;
+        var width = dancer.left;
+        this.setPosition(height, width);
       }
     });
 
@@ -89,9 +96,16 @@ $(document).ready(function() {
           bouncingNodes.push(dancers[index]);
         }
       }
-      console.log(bouncingNodes); 
       for (var bouncer = 0; bouncer < bouncingNodes.length; bouncer++) {
         bouncingNodes[bouncer].lineUp(bouncingNodes, bouncer);
+      }
+    });
+
+    dancer.$node.draggable({
+      stop: function() {
+        var height = dancer.top;
+        var width = dancer.left;
+        dancer.setPosition(height, width);
       }
     });
 
@@ -117,12 +131,135 @@ $(document).ready(function() {
     dancer.setPosition(randomHeight, randomWidth);
     dancers.push(dancer);
 
+    dancer.$node.on('mouseover', function(event) {
+      dancer.shake = true;
+    });
+
+    dancer.$node.on('mouseleave', function(event) {
+      dancer.shake = false;
+    });
+
     $('body').append(dancer.$node);
+
+    $('#lineUpButton').on('click', function(event) {
+      var spinningNodes = [];
+      for (var index = 0; index < dancers.length; index++) {
+        if (dancers[index] instanceof makeSpinningDancer) {
+          spinningNodes.push(dancers[index]);
+        }
+      }
+      for (var spinner = 0; spinner < spinningNodes.length; spinner++) {
+        spinningNodes[spinner].lineUp(spinningNodes, spinner);
+      }
+    });
+
+    dancer.$node.draggable();
+
   });
 
-  // $('#lineUpButton').on('click', function(event) {
-  //   lineUp();
-  // });
+ $('.addSwimmingDancerButton').on('click', function(event) {
+
+    var dancerMakerFunctionName = $(this).data('dancer-maker-function-name');
+
+    // get the maker function for the kind of dancer we're supposed to make
+    var dancerMakerFunction = window[dancerMakerFunctionName];
+
+    // make a dancer with a random position
+    var randomHeight = $("body").height() * Math.random();
+    var randomWidth = $("body").width() * Math.random();
+
+    var dancer = new dancerMakerFunction(
+      randomHeight,
+      randomWidth,
+      Math.random() * 1000
+    );
+
+    dancer.setPosition(randomHeight, randomWidth);
+    dancers.push(dancer);
+
+    dancer.$node.on('mouseover', function(event) {
+      dancer.shake = true;
+    });
+
+    dancer.$node.on('mouseleave', function(event) {
+      dancer.shake = false;
+    });
+
+    $('body').append(dancer.$node);
+
+    $('#lineUpButton').on('click', function(event) {
+      var swimmingNodes = [];
+      for (var index = 0; index < dancers.length; index++) {
+        if (dancers[index] instanceof makeSwimmingDancer) {
+          swimmingNodes.push(dancers[index]);
+        }
+      }
+      for (var spinner = 0; spinner < swimmingNodes.length; spinner++) {
+        swimmingNodes[spinner].lineUp(swimmingNodes, spinner);
+      }
+    });
+
+    dancer.$node.draggable({
+      stop: function() {
+        var height = dancer.top;
+        var width = dancer.left;
+        dancer.setPosition(height, width);
+      }
+    });
+
+  });
+  
+   $('.addRandomDancersButton').on('click', function(event) {
+
+    var dancerMakerFunctionName = $(this).data('dancer-maker-function-name');
+
+    // get the maker function for the kind of dancer we're supposed to make
+    var dancerMakerFunction = window[dancerMakerFunctionName];
+
+    // make a dancer with a random position
+    var randomHeight = $("body").height() * Math.random();
+    var randomWidth = $("body").width() * Math.random();
+
+    var dancer = new dancerMakerFunction(
+      randomHeight,
+      randomWidth,
+      Math.random() * 1000
+    );
+
+    dancer.setPosition(randomHeight, randomWidth);
+    dancers.push(dancer);
+
+    dancer.$node.on('mouseover', function(event) {
+      dancer.shake = true;
+    });
+
+    dancer.$node.on('mouseleave', function(event) {
+      dancer.shake = false;
+    });
+
+    $('body').append(dancer.$node);
+
+    $('#lineUpButton').on('click', function(event) {
+      var randomNodes = [];
+      for (var index = 0; index < dancers.length; index++) {
+        if (dancers[index] instanceof makeRandomDancers) {
+          randomNodes.push(dancers[index]);
+        }
+      }
+      for (var spinner = 0; spinner < randomNodes.length; spinner++) {
+        randomNodes[spinner].lineUp(randomNodes, spinner);
+      }
+    });
+
+    dancer.$node.draggable({
+      stop: function() {
+        var height = dancer.top;
+        var width = dancer.left;
+        dancer.setPosition(height, width);
+      }
+    });
+
+  });
 
 });
 

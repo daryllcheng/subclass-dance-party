@@ -406,10 +406,11 @@
 }
 
 .swing {
-  -webkit-transform-origin: top center;
-  transform-origin: top center;
+  -webkit-transform-origin: bottom center;
+  transform-origin: bottom center;
   -webkit-animation-name: swing;
   animation-name: swing;
+  -vendor-animation-duration: 5s;
 }
 
 @-webkit-keyframes tada {

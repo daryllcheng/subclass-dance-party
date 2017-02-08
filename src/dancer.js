@@ -38,6 +38,17 @@ var makeDancer = function(top, left, timeBetweenSteps) {
   this.timeBetweenSteps = timeBetweenSteps;
   this.$node = $('<span class="blinkingdancer"></span>');
   this.step();
+  // this.$node.draggable();
+    // stop: function() {
+    //   var height = this.top;
+    //   console.log('height:', height);
+    //   var width = this.left;
+    //   console.log('width:', width);
+    //   this.setPosition(height, width);
+    // }
+    // refreshPositions: true
+  // });
+
 }
 
 makeDancer.prototype.step = function() {
@@ -69,3 +80,7 @@ makeDancer.prototype.lineUp = function(array, index) {
   console.log('column', column);
   this.setPosition(row, column);
 };
+
+makeDancer.prototype.interact = function() {
+
+}
